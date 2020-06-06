@@ -102,6 +102,9 @@ You need yarn package manager and expo-cli to run this project locally.
 OBS.: You may need to update the localhost ip address is the files [server/src/config/server.ts](/server/src/config/server.ts) and [mobile/src/services/api.ts](/mobile/src/services/api.ts)
 
 
+You can check some API calls in the Insomnia exported environment under [Insomnia directory](/Insomnia)
+
+
 ## 🤔 Contributing
 
  1. **Fork** the repo on GitHub

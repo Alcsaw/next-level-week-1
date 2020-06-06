@@ -39,10 +39,8 @@ const CollectionPoints = () => {
 
   // load collection point data
   useEffect(() => {
-    //console.log(`collection_points/${routeParams.collection_point_id}`);
     api.get(`collection_points/${routeParams.collection_point_id}`).then(response => {
       setData(response.data);
-      //console.log(data);
     });
   }, []);
 

@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import knex from '../database/connection';
 
+import server from '../config/server';
+
 class CollectionPointController {
     async create (request: Request, response: Response) {
         const {
@@ -81,10 +83,13 @@ class CollectionPointController {
             .distinct()
             .select('collection_point.*');
 
+            console.log('\n\n\nAQUI\n\n\n\n');
+            console.log(server.localhost_ip);
+
         const serializedPoints = collection_points.map(point => {
             return {
                 ...point,
-                image_url: `http://192.168.0.143:3333/uploads/${point.image}`,
+                image_url: `${server.localhost_ip}/uploads/${point.image}`,
             };
         });
 
@@ -105,7 +110,7 @@ class CollectionPointController {
 
         const serializedPoint = {
             ...collection_point,
-            image_url: `http://192.168.0.143:3333/uploads/${collection_point.image}`,
+            image_url: `${server.localhost_ip}/uploads/${collection_point.image}`,
         };
 
         const items = await knex('item')

@@ -53,13 +53,11 @@ const CollectionPoints = () => {
 
                     return;
             }
-            console.log(status);
 
             const location = await Location.getCurrentPositionAsync({
                 enableHighAccuracy: true
             });
 
-            console.log(location);
             const { latitude, longitude } = location.coords;
 
             setInitialPosition([
