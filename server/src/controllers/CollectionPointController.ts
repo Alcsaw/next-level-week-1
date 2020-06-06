@@ -88,7 +88,7 @@ class CollectionPointController {
             };
         });
 
-        return response.json(collection_points);
+        return response.json(serializedPoints);
     };
 
     async show (request: Request, response: Response) {
