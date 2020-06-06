@@ -28,10 +28,10 @@
 
 <p align="center">
   <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#the-omnistack">Next Level Week</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#be-the-hero">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#next-level-week---booster">Next Level Week</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#ecoleta">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-installation-running-locally">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-installation---running-locally">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licence">Licence</a>
 </p>
@@ -45,7 +45,7 @@ This project was developed using the following technologies:
 - [Node.js](https://nodejs.org/en/)
 - [Celebrate](https://github.com/arb/celebrate)
 - [React](https://reactjs.org)
-- [React Native](https://facebook.github.io/react-native/)
+- [React Native](https://reactnative.dev/)
 - [Expo](https://expo.io/)
 
 ## Next Level Week - Booster
@@ -113,7 +113,7 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 ## :memo: Licence
 
 This project is provided freely as open source software, under the GNU General Public
-License. Check out the [LICENSE](LICENSE.md) for details.
+License. Check out the [LICENSE](LICENSE) for details.
 
 ---
 
