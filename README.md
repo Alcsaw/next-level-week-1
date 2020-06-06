@@ -98,6 +98,8 @@ You need yarn package manager and expo-cli to run this project locally.
     yarn install
     yarn start
     ```
+    
+OBS.: You may need to update the localhost ip address is the files [server/src/config/server.ts](/server/src/config/server.ts) and [mobile/src/services/api.ts](/mobile/src/services/api.ts)
 
 
 ## 🤔 Contributing
@@ -117,4 +119,4 @@ License. Check out the [LICENSE](LICENSE) for details.
 
 ---
 
-Made with ♥ by [me](https://www.linkedin.com/in/alcsaw/) with the support of [Rocketseat](rocketseat.com.br)
+Made with ♥ by [Augusto Schnorr](https://www.linkedin.com/in/alcsaw/) with the support of [Rocketseat](rocketseat.com.br)
