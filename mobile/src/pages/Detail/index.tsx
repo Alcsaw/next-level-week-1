@@ -15,6 +15,7 @@ interface RouteParams {
 interface Data {
   collection_point: {
     image: string;
+    image_url: string;
     name: string;
     email: string;
     phone: string;
@@ -76,7 +77,7 @@ const CollectionPoints = () => {
 
         <Image
           style={styles.pointImage}
-          source={{ uri: data.collection_point.image }}
+          source={{ uri: data.collection_point.image_url }}
         />
 
       <Text style={styles.pointName}>{data.collection_point.name}</Text>

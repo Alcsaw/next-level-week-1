@@ -28,19 +28,22 @@ class CollectionPointController {
             city,
             street,
             number,
-            image: 'https://www.unisc.br/images/conceituais/Aunisc.png'
+            image: request.file.filename
         };
 
         const insertedIds = await trx('collection_point').insert(collection_point);
     
         const collection_point_id = insertedIds[0];
     
-        const pointItems = items.map((item_id: number) => {
-            return {
-                item_id,
-                collection_point_id,
-            };
-        });
+        const pointItems = items
+            .split(',')
+            .map((item: string) => Number(item.trim()))
+            .map((item_id: number) => {
+                return {
+                    item_id,
+                    collection_point_id,
+                };
+            });
     
         await trx('collection_points_items').insert(pointItems);
 
@@ -78,6 +81,13 @@ class CollectionPointController {
             .distinct()
             .select('collection_point.*');
 
+        const serializedPoints = collection_points.map(point => {
+            return {
+                ...point,
+                image_url: `http://192.168.0.143:3333/uploads/${point.image}`,
+            };
+        });
+
         return response.json(collection_points);
     };
 
@@ -93,13 +103,18 @@ class CollectionPointController {
                 .json({ message: 'Collection Point not found.' });
         }
 
+        const serializedPoint = {
+            ...collection_point,
+            image_url: `http://192.168.0.143:3333/uploads/${collection_point.image}`,
+        };
+
         const items = await knex('item')
             .join('collection_points_items', 'item.id',
                 '=', 'collection_points_items.item_id')
             .where('collection_points_items.collection_point_id', id)
             .select('item.title');
 
-        return response.json({ collection_point, items });
+        return response.json({ serializedPoint, items });
     };
 };
 
