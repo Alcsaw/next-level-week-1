@@ -34,14 +34,36 @@ export default StyleSheet.create({
 
     select: {},
 
-    input: {
+    inputContainer: {
         height: 60,
         backgroundColor: '#FFF',
         borderRadius: 10,
         marginBottom: 8,
+    },    
+
+    inputAndroid: {
+        borderWidth: 0.5,
+        borderColor: '#34CB79',
+        borderRadius: 10,
+        color: 'black',
+        paddingVertical: 2,
         paddingHorizontal: 24,
+        paddingRight: 30, // to ensure the text is never behind the icon
         fontSize: 16,
+        height: 60
     },
+
+    inputIOS: {
+        borderWidth: 1,
+        borderColor: '#34CB79',
+        borderRadius: 4,
+        color: 'black',
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        paddingRight: 30, // to ensure the text is never behind the icon
+        fontSize: 16,
+        height: 60
+      },
 
     button: {
         backgroundColor: '#34CB79',
