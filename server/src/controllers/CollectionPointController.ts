@@ -83,9 +83,6 @@ class CollectionPointController {
             .distinct()
             .select('collection_point.*');
 
-            console.log('\n\n\nAQUI\n\n\n\n');
-            console.log(server.localhost_ip);
-
         const serializedPoints = collection_points.map(point => {
             return {
                 ...point,

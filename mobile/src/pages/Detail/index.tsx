@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Image, Linking, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Constants from 'expo-constants';
+import { Image, Linking, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import * as MailComposer from 'expo-mail-composer';
 
 import api from '../../services/api';
+import Loading from '../../components/Loading';
+
+import styles from './styles';
 
 interface RouteParams {
   collection_point_id: number;
 }
 
 interface Data {
-  collection_point: {
+  serializedPoint: {
     image: string;
     image_url: string;
     name: string;
@@ -31,6 +33,7 @@ interface Data {
 
 const CollectionPoints = () => {
   const [data, setData] = useState<Data>({} as Data);
+  const [loading, setLoading] = useState(true);
   
   const navigation = useNavigation();
   const route = useRoute();
@@ -39,10 +42,16 @@ const CollectionPoints = () => {
 
   // load collection point data
   useEffect(() => {
-    api.get(`collection_points/${routeParams.collection_point_id}`).then(response => {
-      setData(response.data);
+      api.get(`collection_points/${routeParams.collection_point_id}`).then(response => {
+        setData(response.data);
     });
   }, []);
+
+  useEffect(() => {
+    if (data.serializedPoint) {
+      setLoading(false);
+    }
+  }, [data]);
 
   function handleNavigateBack() {
     navigation.goBack();
@@ -51,19 +60,17 @@ const CollectionPoints = () => {
   function handleComposeMail() {
     MailComposer.composeAsync({
       subject: 'Interesse na coleta de resíduos',
-      recipients: [data.collection_point.email],
+      recipients: [data.serializedPoint.email],
     });
   };
 
   function handleWhatsApp() {
-    Linking.openURL(`whatsapp://send?phone=${data.collection_point.phone}&text=Tenho interesse sobre coleta de resíduos`);
+    Linking.openURL(`whatsapp://send?phone=${data.serializedPoint.phone}&text=Tenho interesse sobre coleta de resíduos`);
   };
 
-  if (! data.collection_point) {
-    return <View style={{ paddingTop: 40 }}>
-      <Text>Loading...</Text>
-    </View>
-    //TODO add loading screen
+  if (loading) {
+    return <Loading />
+    
   }
 
   return (
@@ -75,10 +82,10 @@ const CollectionPoints = () => {
 
         <Image
           style={styles.pointImage}
-          source={{ uri: data.collection_point.image_url }}
+          source={{ uri: data.serializedPoint.image_url }}
         />
 
-      <Text style={styles.pointName}>{data.collection_point.name}</Text>
+      <Text style={styles.pointName}>{data.serializedPoint.name}</Text>
         <Text style={styles.pointItems}>
           {data.items.map(item => item.title).join(', ')}
         </Text>
@@ -86,10 +93,10 @@ const CollectionPoints = () => {
         <View style={styles.address}>
           <Text style={styles.addressTitle}>Endereço</Text>
           <Text style={styles.addressContent}>
-            {data.collection_point.city}, {data.collection_point.uf}
+            {data.serializedPoint.city}, {data.serializedPoint.uf}
           </Text>
           <Text style={styles.addressContent}>
-            Rua {data.collection_point.street}, nº {data.collection_point.number}
+            Rua {data.serializedPoint.street}, nº {data.serializedPoint.number}
           </Text>
         </View>
       </View>
@@ -114,79 +121,5 @@ const CollectionPoints = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 32,
-    paddingTop: 40,
-  },
-
-  pointImage: {
-    width: '100%',
-    height: 120,
-    resizeMode: 'cover',
-    borderRadius: 10,
-    marginTop: 32,
-  },
-
-  pointName: {
-    color: '#322153',
-    fontSize: 28,
-    fontFamily: 'Ubuntu_700Bold',
-    marginTop: 24,
-  },
-
-  pointItems: {
-    fontFamily: 'Roboto_400Regular',
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 8,
-    color: '#6C6C80'
-  },
-
-  address: {
-    marginTop: 32,
-  },
-
-  addressTitle: {
-    color: '#322153',
-    fontFamily: 'Roboto_500Medium',
-    fontSize: 16,
-  },
-
-  addressContent: {
-    fontFamily: 'Roboto_400Regular',
-    lineHeight: 24,
-    marginTop: 8,
-    color: '#6C6C80'
-  },
-
-  footer: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderColor: '#999',
-    paddingTop: 20,
-    paddingHorizontal: 32,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-
-  button: {
-    width: '48%',
-    backgroundColor: '#34CB79',
-    borderRadius: 10,
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  buttonText: {
-    marginLeft: 8,
-    color: '#FFF',
-    fontSize: 16,
-    fontFamily: 'Roboto_500Medium',
-  },
-});
 
 export default CollectionPoints;
