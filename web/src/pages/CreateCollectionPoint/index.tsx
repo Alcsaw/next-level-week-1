@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckCircle  } from 'react-icons/fi';
 import axios from 'axios';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
@@ -52,6 +52,8 @@ const CreateCollectionPoint = () => {
     const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
     const [selectedFile, setSelectedFile] = useState<File>();
+
+    const [success, setSuccess] = useState(false);
 
     const history = useHistory();
     
@@ -155,11 +157,14 @@ const CreateCollectionPoint = () => {
         };
 
         
-        await api.post('collection_points', data);
+        const response = await api.post('collection_points', data);
+        //TODO: add error handling
 
-        alert('Ponto de coelta criado!');
-
-        history.push('/');
+        setSuccess(true);
+        
+        setTimeout(() => {
+            history.push('/');
+        }, 2000);
     };
 
     return (
@@ -172,6 +177,13 @@ const CreateCollectionPoint = () => {
                     Voltar para home
                 </Link>
             </header>
+
+            {success && (
+                <div id="success-message">
+                    <FiCheckCircle color="#34CB79" size={32} />
+                    <h2>Cadastro concluído!</h2>
+                </div>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <h1>Cadastro do ponto de coleta</h1>
@@ -190,6 +202,7 @@ const CreateCollectionPoint = () => {
                             name="name"
                             id="name"
                             onChange={handleInputChange}
+                            required
                         />
                     </div>
 
@@ -201,6 +214,7 @@ const CreateCollectionPoint = () => {
                                 name="email"
                                 id="email"
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
 
@@ -211,6 +225,7 @@ const CreateCollectionPoint = () => {
                                 name="phone"
                                 id="phone"
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
                     </div>
@@ -246,6 +261,7 @@ const CreateCollectionPoint = () => {
                                 id="uf"
                                 value={selectedUF}
                                 onChange={handleSelectUF}
+                                required
                             >
                                 <option value="0">Selecione uma UF</option>
                                 {ufs.map(uf => (
@@ -262,6 +278,7 @@ const CreateCollectionPoint = () => {
                                 id="city"
                                 value={selectedCity}
                                 onChange={handleSelectCity}
+                                required
                             >
                                 <option value="0">Selecione uma Cidade</option>
                                 {cities.map(city => (
@@ -280,6 +297,7 @@ const CreateCollectionPoint = () => {
                                 name="street"
                                 id="street"
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
 
@@ -291,6 +309,7 @@ const CreateCollectionPoint = () => {
                                 name="number"
                                 id="number"
                                 onChange={handleInputChange}
+                                required
                             />
                         </div>
                     </div>

@@ -30,7 +30,7 @@
   <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#next-level-week---booster">Next Level Week</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#ecoleta">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">To infinity and beyond</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#%EF%B8%8F-installation---running-locally">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licence">Licence</a>
@@ -65,11 +65,24 @@ For example, ACME Corp. may product eletronic waste, so it will create a profile
 ![Searching for eletronic waste](/readme-images/map-mobile.jpg)
 
 
-## 🔖 Layout
+### Layout
 
 The app design was made by Rocketseat using [Figma](https://figma.com).
 
 You can se the project mockup in [this link](https://www.figma.com/file/9TlOcj6l7D05fZhU12xWT3/Ecoleta-(Booster)).
+
+
+## To infinity and beyound
+
+here are some of my own contributions to the project (not done during the classes):
+
+- Item selection validation with regex (backend);
+- Some CSS adjustments for Android mobile frontend;
+- Code organization (config and styles in separated files);
+- Loading component;
+- Select component for state and city form @ Home (mobile);
+- Form validation on web frontend when creating a collection point;
+- Success overlay for when successfully submitting form in web frontend;
 
 
 ## ⚙️ Installation - Running locally
